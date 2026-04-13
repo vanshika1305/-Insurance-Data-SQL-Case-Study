@@ -18,10 +18,11 @@ WHERE diabetic = 'Yes' AND smoker = 'Yes';
 
 SELECT COUNT(DISTINCT(PatientID))  FROM dmlpractice.insurance_data
 WHERE region NOT IN ('southwest');
+
 /* 5. Total claim amount from male smoker.*/
+
 SELECT SUM(claim) FROM dmlpractice.insurance_data
 WHERE smoker = 'Yes' AND gender = 'male';
-
 
 /*6. Select all records of south region. */
 
@@ -31,23 +32,30 @@ WHERE region LIKE 'south%'  ;
 /*7. No of patient having normal blood pressure. Normal range[90-120]  */
 SELECT count(PatientID) FROM dmlpractice.insurance_data
 WHERE bloodpressure BETWEEN 90 AND 120;
- /* 
-8. No of pateint belo 17 years of age having normal blood pressure as per below formula -
+
+/* 8. No of pateint belo 17 years of age having normal blood pressure as per below formula -
     - BP normal range = 80+(age in years × 2) to 100 + (age in years × 2)
-     - Note: Formula taken just for practice, don't take in real sense.*/
+    - Note: Formula taken just for practice, don't take in real sense.*/
      
 SELECT count(PatientID) FROM dmlpractice.insurance_data
 WHERE age < 17 AND bloodpressure BETWEEN 80 + (age *2) AND 100 + (age *2); 
 
-  /*  9. What is the average claim amount for non-smoking female patients who are diabetic? */
+/*  9. What is the average claim amount for non-smoking female patients who are diabetic? */
   SELECT AVG(claim) FROM dmlpractice.insurance_data
   WHERE gender = 'female' AND  diabetic='Yes';
   
 /* 10. Write a SQL query to update the claim amount for the patient with PatientID = 1234 to 5000. */
+
 UPDATE dmlpractice.insurance_data
 SET claim = 5000
 WHERE  PatientID = 1234;
+
 /* 11. Write a SQL query to delete all records for patients who are smokers and have no children.*/
  
 DELETE FROM dmlpractice.insurance_data
+
+
+
+
+ 
 WHERE smoker = 'Yes' AND children  = 0
